@@ -30,10 +30,9 @@ export default function Form() {
         validationSchema: Validation,
         onSubmit: (values, { resetForm }) => {
             console.log("======>", values);
-            // Swal.fire('Form submited 👍')
             Swal.fire({
                 title: "Submitted!",
-                text: "Your form has been submit.",
+                text: "Your form has been submitted.",
                 icon: "success"
             });
             resetForm();
@@ -239,7 +238,7 @@ export default function Form() {
                                 className={`border ${errors.address && touched.address
                                     ? "border-pink-500"
                                     : "border-gray-400"
-                                    } w-full p-1 rounded-lg focus:outline-none focus:border-stone-700`}
+                                    } w-full p-1 rounded-lg focus:outline-none focus:border-stone-700 resize-none`}
                                 name="address"
                                 value={values.address}
                                 onChange={handleChange}
