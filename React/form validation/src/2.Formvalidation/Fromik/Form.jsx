@@ -16,16 +16,35 @@ const initialValues = {
 };
 
 export default function Form() {
-    const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
-        useFormik({
-            initialValues: initialValues,
-            validationSchema: Validation,
-            onSubmit: (values) => {
-                console.log("======>", values);
-            },
-        });
+    const {
+        values,
+        errors,
+        touched,
+        handleBlur,
+        handleChange,
+        handleSubmit,
+        resetForm,
+    } = useFormik({
+        initialValues: initialValues,
+        validationSchema: Validation,
+        onSubmit: (values, { resetForm }) => {
+            console.log("======>", values);
+            resetForm();
+        },
+    });
     return (
         <>
+            <style>
+                {
+                    `@layer base {
+                        input[type="number"]::-webkit-inner-spin-button,
+                        input[type="number"]::-webkit-outer-spin-button {
+                            -webkit-appearance: none;
+                            margin: 0;
+                        }
+                    }`
+                }
+            </style>
             <form onSubmit={handleSubmit}>
                 <div className="min-h-screen py-28 bg-gray-800">
                     <div className="w-10/12 p-6 sm:w-1/2 xl:w-1/3 2xl:w-1/4 mx-auto text-black bg-gradient-to-r from-violet-400 to-violet-200 rounded-xl shadow-lg items-center overflow-hidden">
@@ -83,7 +102,7 @@ export default function Form() {
                                 className={`border ${errors.contactNo && touched.contactNo
                                     ? "border-pink-500"
                                     : "border-gray-400"
-                                    } w-full p-1 rounded-lg focus:outline-none focus:border-stone-700`}
+                                    } w-full p-1 rounded-lg focus:outline-none focus:border-stone-700 `}
                                 name="contactNo"
                                 value={values.contactNo}
                                 onChange={handleChange}
@@ -248,7 +267,7 @@ export default function Form() {
                         </div>
                         {/* Document */}
                         <div className="py-2 lg:py-3">
-                            <div className='w-full sm:h-12 sm:flex lg:justify-center gap-3 lg:gap-5 rounded-lg'>
+                            <div className="w-full sm:h-12 sm:flex lg:justify-center gap-3 lg:gap-5 rounded-lg">
                                 <div className="flex items-center mb-1 sm:mb-0">
                                     <input
                                         id="checkbox-1"
@@ -260,7 +279,15 @@ export default function Form() {
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                     />
-                                    <label htmlFor="checkbox-1" className={`ms-2 lg:ms-3 text-sm font-medium ${values.docs.includes("aadhar_card") ? 'text-gray-950' : 'text-gray-600'}`}>Aadhar card</label>
+                                    <label
+                                        htmlFor="checkbox-1"
+                                        className={`ms-2 lg:ms-3 text-sm font-medium ${values.docs.includes("aadhar_card")
+                                            ? "text-gray-950"
+                                            : "text-gray-600"
+                                            }`}
+                                    >
+                                        Aadhar card
+                                    </label>
                                 </div>
                                 <div className="flex items-center mb-1 sm:mb-0">
                                     <input
@@ -273,7 +300,15 @@ export default function Form() {
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                     />
-                                    <label htmlFor="checkbox-2" className={`ms-2 lg:ms-3 text-sm font-medium ${values.docs.includes("driving_licence") ? 'text-gray-950' : 'text-gray-600'}`}>Driving Licence</label>
+                                    <label
+                                        htmlFor="checkbox-2"
+                                        className={`ms-2 lg:ms-3 text-sm font-medium ${values.docs.includes("driving_licence")
+                                            ? "text-gray-950"
+                                            : "text-gray-600"
+                                            }`}
+                                    >
+                                        Driving Licence
+                                    </label>
                                 </div>
                                 <div className="flex items-center mb-1 sm:mb-0">
                                     <input
@@ -286,11 +321,21 @@ export default function Form() {
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                     />
-                                    <label htmlFor="checkbox-3" className={`ms-2 lg:ms-3 text-sm font-medium ${values.docs.includes("voter_id") ? 'text-slate-950' : 'text-gray-600'}`}>Voter Id</label>
+                                    <label
+                                        htmlFor="checkbox-3"
+                                        className={`ms-2 lg:ms-3 text-sm font-medium ${values.docs.includes("voter_id")
+                                            ? "text-slate-950"
+                                            : "text-gray-600"
+                                            }`}
+                                    >
+                                        Voter Id
+                                    </label>
                                 </div>
                             </div>
                             <div className="justify-center flex">
-                                {errors.docs && touched.docs && <p className='text-red-600 text-sm'>{errors.docs}</p>}
+                                {errors.docs && touched.docs && (
+                                    <p className="text-red-600 text-sm">{errors.docs}</p>
+                                )}
                             </div>
                         </div>
                         {/* Password */}
