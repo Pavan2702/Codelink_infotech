@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./SIgnUp.css" </head>
+
+<body>
+    <div class="form1">
+        <h1>Registration Form</h1>
+        <form onsubmit="return Formcheck()">
+            <div class="row">
+                <div class="col-1">
+                    <label for="">First Name</label>
+                </div>
+                <div class="col">
+                    <input type="text" id="fname" onblur="return blurcheck(this,'msg1')"
+                        onkeyup="return nameCheck(this, 'msg1')">
+                    <div class="col">
+                        <span class="msg" id="msg1"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1">
+                    <label for="">Last Name</label>
+                </div>
+                <div class="col">
+                    <input type="text" id="lname" onblur="return blurcheck(this,'msg3')"
+                        onkeyup="return nameCheck(this, 'msg3')">
+                    <div class="col">
+                        <span class="msg" id="msg3"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1">
+                    <label for="">Address</label>
+                </div>
+                <div class="col">
+                    <textarea name="" id="addr" cols="30" rows="2" maxlength="300"
+                        placeholder="address must be in between 30 to 300 character"
+                        onkeyup="return addressLength()"></textarea>
+                    <div class="col">
+                        <span class="msg" id="msg4"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1">
+                    <label for="">Birth-Date</label>
+                </div>
+                <div class="col">
+                    <input type="date" id="bdate" onblur="return blurcheck(this,'msg5')">
+                    <div class="col">
+                        <span class="msg" id="msg5"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1">
+                    <label for="">Gender</label>
+                </div>
+                <div class="col">
+                    <input type="radio" id="male" name="gen" value="Male" onblur="return blurcheck(this,'msg6')">
+                    <label for="Male" style="color: beige;">Male</label>
+                    <input type="radio" id="female" name="gen" value="Feamle" onblur="return blurcheck(this,'msg6')">
+                    <label for="Female" style="color: beige;">Female</label>
+                    <div class="col">
+                        <span class="msg" id="msg6"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1">
+                    <label for="">Experirnce</label>
+                </div>
+                <div class="col">
+                    <select name="" id="exp" onblur="return dropSelect(this, 'msg7') ">
+                        <option value="-1">--- select ---</option>
+                        <option value="1 Year">1 Year</option>
+                        <option value="2 Year">2 Year</option>
+                        <option value="3 Year">3 Year</option>
+                        <option value="4 Year">4 Year</option>
+                        <option value="5 Year">5 Year</option>
+                    </select>
+                    <div class="col">
+                        <span class="msg" id="msg7"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1">
+                    <label for="">Mobile No</label>
+                </div>
+                <div class="c" style="margin: auto;">
+                    <select name="" id="code" style="height: 30px; width: 50px; border-radius: 10px;">
+                        <option value="+91">+91</option>
+                        <option value="+261">+261</option>
+                        <option value="+92">+92</option>
+                        <option value="+263">+263</option>
+                    </select>
+                    <input type="text" name="" id="mobile" onkeyup="return MobileValidation()" maxlength="10" style="width: 242px;;">
+                    <div class="col">
+                        <span class="msg" id="msg8"></span>
+                    </div>
+                </div>
+            </div>
+            <!-- Email id -->
+            <div class="row">
+                <div class="col-1">
+                    <label for="">Email id</label>
+                </div>
+                <div class="col">
+                    <input type="text" name="" id="email" onkeyup="return emailEx()">
+                    <div class="col">
+                        <span class="msg" id="msg9"></span>
+                    </div>
+                </div>
+            </div>
+            <!-- Password -->
+            <div class="row">
+                <div class="col-1">
+                    <label for="">Password</label>
+                </div>
+                <div class="col passicon">
+                    <input type="password" name="" id="pass" placeholder="8 to 15 character" maxlength="15"
+                        onkeyup="return passwordEx()">
+                    <span class="fa-solid fa-eye icon" id="icon1" onclick="showpass()"></span>
+                    <div class="col">
+                        <span class="msg" id="msg10"></span>
+                    </div>
+                </div>
+            </div>
+            <!-- Confirm Password -->
+            <div class="row">
+                <div class="col-1">
+                    <label for="">Confirm Password</label>
+                </div>
+                <div class="col passicon">
+                    <input type="password" name="" id="cpass" onkeyup="return passwordCompare()">
+                    <span class="fa-solid fa-eye icon" id="icon2" onclick="showcpass()"></span>
+                    <div class="col">
+                        <span class="msg" id="msg11"></span>
+                    </div>
+                </div>
+            </div>
+            <!-- Image -->
+            <div class="row">
+                <div class="col-1">
+                    <label for="">Select Image</label>
+                </div>
+                <div class="col">
+                    <input type="file" name="" id="img" accept="Image/*" style="color: aliceblue;">
+                    <div style="height: 80px; width: 90px; display: flex; margin: auto;
+                    padding-top: 10px;">
+                        <img src="./user.avif" alt="Image Preview" id="pimg" style="height: 90px; width: 90px; border-radius: 50%;">
+                    </div>
+                    <div class="col">
+                        <span class="msg" id="msg12"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="btn">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+
+        <script src="./SignUp.js"></script>
+    </div>
+</body>
+
+</html>

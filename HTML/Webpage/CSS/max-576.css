@@ -1,0 +1,170 @@
+@media (max-width: 576px) {
+
+  .container {
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+
+  header .navigation .navbar {
+    display: none;
+  }
+
+  header .navigation .logo h1 {
+    font-size: 25px;
+  }
+
+  header .navigation .side-view button {
+    display: block;
+  }
+
+  /* ========================== homepage ============================= */
+
+  .homepage img {
+    height: 450px;
+    max-width: 100%;
+  }
+
+  .homepage .homepage-box {
+    width: 70%;
+    top: 100px;
+  }
+
+  .homepage .homepage-box h1 {
+    font-size: 30px;
+    width: 100%;
+    color: white;
+    padding-bottom: 20px;
+  }
+
+  .homepage .homepage-box .p-line p {
+    font-size: 11px;
+    font-weight: 300;
+    width: 100%;
+  }
+
+  .homepage .homepage-box .btn button {
+    height: 30px;
+    width: 90px;
+    font-size: 10px;
+  }
+
+  .homepage .dots {
+    padding: 15px 0px;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  /* ============= grid box =================== */
+
+  .main-box .grid-box {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(1, 1fr);
+    transform: translateY(-60px);
+  }
+
+  .main-box .outer-b {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .main-box .outer-b .left-b button {
+    height: 30px;
+    width: 90px;
+    font-size: 10px;
+  }
+
+  /* ======================= elephant ======================= */
+  .elephant .ele-flex-box {
+    display: flex;
+    flex-direction: column;
+
+  }
+  .elephant .ele-flex-box .ele-right button {
+    height: 30px;
+    width: 90px;
+    font-size: 10px;
+  }
+
+  /* ========================== tiger ======================== */
+
+  .tiger .outer-b2 {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ======================= counting =========================*/
+  .counting img {
+    height: 300px;
+  }
+
+  .counting .white1 {
+    display: none;
+  }
+
+  .counting .white2 {
+    display: none;
+  }
+
+  .counting .counting-grid {
+    display: grid;
+    gap: 15px;
+    margin: 0px 20px;
+    grid-template-columns: repeat(2, 1fr);
+    top: 60px;
+  }
+
+  .counting .counting-grid .grid {
+    grid-row: 2/ span 1;
+    grid-column: 1/ span 2;
+    width: 50%;
+    margin: auto;
+  }
+
+  .counting .counting-grid .grid1 h1 {
+    color: white;
+    font-size: 15px;
+    padding-bottom: 5px;
+  }
+
+  .counting .counting-grid .grid1 h3 {
+    color: #fcb900;
+    font-size: 10px;
+    padding-bottom: 5px;
+  }
+
+  .counting .counting-grid .grid1 p {
+    color: white;
+    font-size: 8px;
+  }
+
+  /* =============================  recent blog ================================ */
+  .recent .rec-grid-box {
+    display: grid;
+    gap: 27px;
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .recent .rec-content button{
+    height: 30px;
+    width: 90px;
+    font-size: 10px;
+  }
+  /* =========================== review ================================ */
+
+
+  .review .rew-main-box {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+  }
+
+  /* ================================= footer ============================= */
+
+  footer .foot-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+    /* border: 2px solid black; */
+  }
+}

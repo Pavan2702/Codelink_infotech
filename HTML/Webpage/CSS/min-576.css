@@ -1,0 +1,130 @@
+@media (min-width: 576px) {
+    .container {
+      margin-left: 40px;
+      margin-right: 40px;
+    }
+    header .navigation .navbar {
+      display: none;
+    }
+    header .navigation .logo h1 {
+      font-size: 25px;
+    }
+    header .navigation .side-view button {
+      display: block;
+    }
+    /* ========================== homepage ============================= */
+    .homepage img {
+      height: 450px;
+      width: 100%;
+    }
+    .homepage .homepage-box {
+      width: 70%;
+      top: 100px;
+    }
+  
+    .homepage .homepage-box h1 {
+      font-size: 30px;
+      width: 100%;
+      color: white;
+      padding-bottom: 20px;
+    }
+    .homepage .homepage-box .p-line p {
+      font-size: 14px;
+      font-weight: 300;
+    }
+  
+    .homepage .dots {
+      padding: 10px 0px;
+      justify-content: center;
+      gap: 20px;
+    }
+  
+    /* ============= grid box =================== */
+  
+    .main-box .grid-box {
+      display: grid;
+      gap: 30px;
+      grid-template-columns: repeat(1, 1fr);
+      transform: translateY(-80px);
+    }
+  
+    .main-box .outer-b {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    /* ======================= elephant ======================= */
+    .elephant .ele-flex-box {
+      display: flex;
+      flex-direction: column;
+    }
+
+     /* ========================== tiger ======================== */
+
+     .tiger .outer-b2 {
+      display: flex;
+      flex-direction: column;
+    }
+
+     /* ======================= counting =========================*/
+
+     .counting .white1{
+      display: none;
+     }
+     .counting .white2{
+     display: none;
+    }
+    .counting .counting-grid{
+     display: grid;
+     gap: 20px;
+     grid-template-columns: repeat(2,1fr);
+     /* position: absolute; */
+     top: 20px;
+   }
+   .counting .counting-grid .grid{
+    grid-row: 2/ span 1;
+    grid-column: 1/ span 2;
+    width: 50%;
+    margin: auto;
+  }
+ 
+   .counting .counting-grid .grid1 h1{
+     color: white;
+     font-size: 20px;
+     padding-bottom: 10px;
+   }
+   .counting .counting-grid .grid1 h3{
+     color: #fcb900;
+     font-size: 17px;
+     padding-bottom: 10px;
+   }
+   .counting .counting-grid .grid1 p{
+     color: white;
+     font-size: 14px;
+   }
+    
+   /* =============================  recent blog ================================ */
+  .recent .rec-grid-box{
+    display: grid;
+    gap: 27px;
+    grid-template-columns: repeat(1,1fr);
+   }
+
+/* =========================== review ================================ */
+
+
+.review .rew-main-box{
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+
+/* ================================= footer ============================= */
+
+footer .foot-grid{
+  display: grid;
+  grid-template-columns: repeat(1,1fr);
+  gap: 20px;
+}
+  }
+  

@@ -1,0 +1,92 @@
+@media (min-width: 1200px) {
+    .container {
+      margin-left: 120px;
+      margin-right: 120px;
+    }
+    header .navigation .navbar ul li a {
+      font-size: 17px;
+    }
+  
+    /*=========================== homepage =====================*/
+    .homepage img {
+      height: auto;
+      max-width: 100%;
+    }
+    .homepage .homepage-box {
+      width: 50%;
+      top: 300px;
+    }
+  
+    .homepage .homepage-box h1 {
+      font-size: 45px;
+      width: 85%;
+    }
+    .homepage .homepage-box .p-line p {
+      font-size: 15px;
+      font-weight: 300;
+    }
+  
+    .homepage .dots {
+      padding: 10px 0px;
+      justify-content: end;
+      gap: 10px;
+    }
+  
+    /* ============= grid box =================== */
+  
+    .main-box .grid-box {
+      display: grid;
+      gap: 30px;
+      grid-template-columns: repeat(3, 1fr);
+      transform: translateY(-90px);
+    }
+  
+    .main-box .outer-b {
+      display: flex;
+      flex-direction: row;
+    }
+  
+    /* ======================= elephant ======================= */
+    .elephant .ele-flex-box {
+      display: flex;
+      flex-direction: row;
+    }
+
+     /* ========================== tiger ======================== */
+
+     .tiger .outer-b2 {
+      display: flex;
+      flex-direction: row;
+    }
+
+    /* ======================= counting =========================*/
+
+    .counting .white1{
+      display: block;
+     }
+     .counting .white2{
+     display: block;
+    }
+    .counting .counting-grid{
+     display: grid;
+     gap: 30px;
+     grid-template-columns: repeat(3,1fr);
+     /* margin: 0px 100px; */
+     position: absolute;
+     top: 300px;
+   }
+   .counting .counting-grid .grid1 h1{
+    
+     font-size: 45px;
+     padding-bottom: 15px;
+   }
+   .counting .counting-grid .grid1 h3{
+     font-size: 22px;
+     padding-bottom: 20px;
+   }
+   .counting .counting-grid .grid1 p{
+     font-size: 17px;
+   }
+    
+  }
+  

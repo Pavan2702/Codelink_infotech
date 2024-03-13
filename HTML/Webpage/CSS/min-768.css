@@ -1,0 +1,141 @@
+@media (min-width: 768px) {
+    .container {
+      margin-left: 70px;
+      margin-right: 70px;
+    }
+    header .navigation .navbar {
+      display: none;
+    }
+    header .navigation .logo h1 {
+      font-size: 30px;
+    }
+    header .navigation .side-view button {
+      display: block;
+    }
+  
+    /* ================================ homepage ====================================== */
+    .homepage img {
+      height: 500px;
+      width: 100%;
+    }
+    .homepage .homepage-box {
+      width: 70%;
+      top: 100px;
+    }
+  
+    .homepage .homepage-box h1 {
+      font-size: 40px;
+      width: 100%;
+    }
+    .homepage .homepage-box .p-line p {
+      font-size: 14px;
+      font-weight: 300;
+    }
+  
+    .homepage .dots {
+      padding: 10px 0px;
+      justify-content: center;
+      gap: 20px;
+    }
+  
+    /* ============= grid box =================== */
+  
+    .main-box .grid-box {
+      display: grid;
+      gap: 30px;
+      grid-template-columns: repeat(2, 1fr);
+      transform: translateY(-70px);
+    }
+    .main-box .grid-box .box-11{
+      grid-row: 2/ span 1;
+      grid-column: 1/ span 2;
+      width: 50%;
+      margin: auto;
+    }
+    .main-box .outer-b {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    /* ======================= elephant ======================= */
+    .elephant .ele-flex-box {
+      display: flex;
+      flex-direction: column;
+    }
+
+     /* ========================== tiger ======================== */
+
+     .tiger .outer-b2 {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ======================= counting =========================*/
+
+    .counting .white1{
+      display: none;
+     }
+     .counting .white2{
+     display: none;
+    }
+    .counting .counting-grid{
+     display: grid;
+     gap: 20px;
+     grid-template-columns: repeat(3,1fr);
+     margin: 0px 20px;
+     position: absolute;
+     top: 200px;
+   }
+   .counting .counting-grid .grid{
+    grid-row: unset;
+    grid-column: unset;
+    width: unset;
+    margin: unset ;
+  }
+   .counting .counting-grid .grid1 h1{
+     color: white;
+     font-size: 20px;
+     padding-bottom: 10px;
+   }
+   .counting .counting-grid .grid1 h3{
+     color: #fcb900;
+     font-size: 17px;
+     padding-bottom: 10px;
+   }
+   .counting .counting-grid .grid1 p{
+     color: white;
+     font-size: 14px;
+   }
+
+   /* =============================  recent blog ================================ */
+  .recent .rec-grid-box{
+    display: grid;
+    gap: 27px;
+    grid-template-columns: repeat(2,1fr);
+  }
+  .recent .rec-grid-box .rec-box1{
+      grid-row: 2/ span 1;
+      grid-column: 1/ span 2;
+      width: 50%;
+      margin: auto;
+  }
+   
+
+    /* =========================== review ================================ */
+
+
+.review .rew-main-box{
+  display: flex;
+  gap: 25px;
+  flex-direction: column;
+}
+
+/* ================================= footer ============================= */
+
+footer .foot-grid{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 30px;
+}
+  }
+  

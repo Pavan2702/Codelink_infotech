@@ -1,0 +1,141 @@
+@media (min-width: 992px) {
+    .container {
+      margin-left: 90px;
+      margin-right: 90px;
+    }
+    header .navigation .navbar {
+      display: block;
+    }
+    header .navigation .logo h1 {
+      font-size: 30px;
+    }
+    header .navigation .navbar ul li a {
+      font-size: 15px;
+    }
+    header .navigation .side-view button {
+      display: none;
+    }
+  
+    /* ================================ homepage ====================================== */
+    .homepage img {
+      height: 700px;
+      width: 100%;
+    }
+  
+    .homepage .homepage-box {
+      width: 50%;
+      top: 200px;
+    }
+  
+    .homepage .homepage-box h1 {
+      font-size: 45px;
+      width: 100%;
+    }
+  
+    .homepage .homepage-box .p-line p {
+      font-size: 14px;
+      font-weight: 300;
+    }
+  
+    .homepage .dots {
+      padding: 10px 0px;
+      justify-content: end;
+      gap: 10px;
+    }
+  
+    /* ============= grid box =================== */
+  
+    .main-box .grid-box {
+      display: grid;
+      gap: 30px;
+      grid-template-columns: repeat(3, 1fr);
+      transform: translateY(-80px);
+    }
+    .main-box .grid-box .box-11{
+      grid-row: unset;
+     grid-column: unset;
+     width: unset;
+     margin: unset;
+    }
+    .main-box .outer-b {
+      display: flex;
+      flex-direction: row;
+    }
+  
+    /* ======================= elephant ======================= */
+    .elephant .ele-flex-box {
+      display: flex;
+      flex-direction: row;
+    }
+
+     /* ========================== tiger ======================== */
+
+     .tiger .outer-b2 {
+      display: flex;
+      flex-direction: row;
+    }
+
+     /* ======================= counting =========================*/
+
+     .counting .white1{
+      display: none;
+     }
+     .counting .white2{
+     display: none;
+    }
+    .counting .counting-grid{
+     display: grid;
+     gap: 30px;
+     grid-template-columns: repeat(3,1fr);
+     /* margin: 0px 100px; */
+     position: absolute;
+     top: 270px;
+   }
+ 
+   .counting .counting-grid .grid1 h1{
+     color: white;
+     font-size: 45px;
+     padding-bottom: 15px;
+   }
+   .counting .counting-grid .grid1 h3{
+     color: #fcb900;
+     font-size: 22px;
+     padding-bottom: 20px;
+   }
+   .counting .counting-grid .grid1 p{
+     color: white;
+     font-size: 17px;
+   }
+    /* =============================  recent blog ================================ */
+  .recent .rec-grid-box{
+    display: grid;
+    gap: 27px;
+    grid-template-columns: repeat(3,1fr);
+  }
+  .recent .rec-grid-box .rec-box1{
+    grid-row: unset;
+    grid-column: unset;
+    width: unset;
+    margin: unset;
+}
+
+/* =========================== review ================================ */
+
+
+.review .rew-main-box{
+  display: flex;
+  gap: 25px;
+  flex-direction: row;
+}
+
+/* ================================= footer ============================= */
+
+footer .foot-grid{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
+ 
+}
+    
+  }
+  
