@@ -30,7 +30,12 @@ export default function Form() {
         validationSchema: Validation,
         onSubmit: (values, { resetForm }) => {
             console.log("======>", values);
-            Swal.fire('Form submited 👍', 'success')
+            // Swal.fire('Form submited 👍')
+            Swal.fire({
+                title: "Submitted!",
+                text: "Your form has been submit.",
+                icon: "success"
+            });
             resetForm();
         },
     });
