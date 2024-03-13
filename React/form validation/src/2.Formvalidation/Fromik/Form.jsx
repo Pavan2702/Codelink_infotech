@@ -1,6 +1,7 @@
 import React from "react";
 import { useFormik } from "formik";
 import Validation from "../Yup/Validation";
+import Swal from "sweetalert2";
 
 const initialValues = {
     firstName: "",
@@ -29,6 +30,7 @@ export default function Form() {
         validationSchema: Validation,
         onSubmit: (values, { resetForm }) => {
             console.log("======>", values);
+            Swal.fire('Form submited 👍', 'success')
             resetForm();
         },
     });
