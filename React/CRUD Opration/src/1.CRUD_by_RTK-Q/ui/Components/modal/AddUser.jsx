@@ -15,7 +15,7 @@ const validation = Yup.object({
     password: Yup.string().required("Please enter a valid password"),
 });
 
-export default function AddUser({ isOpen, toggle, 
+export default function AddUser({ isOpen, toggle, data,
     initialValues = {
         email: "",
         name: "",
@@ -34,24 +34,37 @@ export default function AddUser({ isOpen, toggle,
         validationSchema: validation,
         onSubmit: async (values, { resetForm }) => {
             try {
-                if ( initialValues.email && initialValues.name && initialValues.password ) {
+                const existingUser = data.find(user => user.email === values.email);
+                if (existingUser) {
+                    Swal.fire({
+                        title: "User already exists!",
+                        text: "Please provide a different email address.",
+                        icon: "error",
+                    });
+                } else if (initialValues.email && initialValues.name && initialValues.password) {
                     // If initialValues are provided, it means we are updating existing data
                     await updateData(values);
+                    Swal.fire({
+                        title: "Updated!",
+                        text: "User data has been updated successfully.",
+                        icon: "success",
+                    });
                 } else {
                     // If no initialValues, it means we are adding new data
                     await addData(values);
+                    Swal.fire({
+                        title: "Added!",
+                        text: "New user has been added successfully.",
+                        icon: "success",
+                    });
                 }
-                Swal.fire({
-                    title: "Submitted!",
-                    text: "Your form has been submitted.",
-                    icon: "success",
-                });
                 resetForm();
                 toggle();
             } catch (error) {
                 console.error("Error adding data:", error);
             }
         },
+        
     });
 
     const cancelButton = () => {

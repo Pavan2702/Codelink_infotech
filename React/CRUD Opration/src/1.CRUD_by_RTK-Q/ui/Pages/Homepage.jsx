@@ -12,13 +12,21 @@ export default function Homepage() {
     const [deleteData] = useDeleteDataMutation();
     const [first, setFirst] = useState([]);
     const [update, setUpdate] = useState([]);
+    const [search, setSearch] = useState(" ")
     const [modalOpen, setModalOpen] = useState(false);
 
     useEffect(() => {
-        if (!isLoading && data) {
+        if (!isLoading && data && search) {
+            const searchdata = data.filter((e) =>
+                e?.email.toLowerCase().includes(search.toLowerCase()) ||
+                e?.name.toLowerCase().includes(search.toLowerCase())
+            );
+            setFirst(searchdata);
+        } else if (!isLoading && data) {
             setFirst(data);
         }
-    }, [isLoading, data]);
+    }, [isLoading, data, search]);
+
 
     const toggleModal = () => {
         setModalOpen(!modalOpen);
@@ -61,7 +69,7 @@ export default function Homepage() {
                 </div>
             ) : (
                 <div>
-                    <div className="pb-5 flex justify-center">
+                    <div className="flex justify-center">
                         <button
                             className="cursor-pointer font-semibold overflow-hidden rounded-md relative z-100 border border-green-500 group px-8 py-2"
                             onClick={toggleModal}
@@ -73,9 +81,21 @@ export default function Homepage() {
                             <span className="absolute w-full h-full bg-green-500 -right-32 top-0 -rotate-45 group-hover:rotate-0 group-hover:right-0 duration-500"></span>
                         </button>
                     </div>
+                    <div className="flex items-center justify-center p-3">
+                        <input
+                            class="bg-zinc-200 text-zinc-600 font-mono ring-1 ring-zinc-400 focus:ring-2 focus:ring-rose-400 outline-none duration-300 placeholder:text-zinc-600 placeholder:opacity-50 rounded-full px-4 py-1 shadow-md focus:shadow-lg focus:shadow-rose-400"
+                            autocomplete="off"
+                            placeholder="TailwindCSS..."
+                            name="text"
+                            type="text"
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                        />
+
+                    </div>
                     <table className="min-w-full divide-y divide-gray-200">
-                        <thead className="bg-gray-50">
-                            <tr>
+                        <thead>
+                            <tr className="bg-slate-400">
                                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-950 uppercase tracking-wider">#</th>
                                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-950 uppercase tracking-wider">email</th>
                                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-950 uppercase tracking-wider">Username</th>
@@ -85,13 +105,13 @@ export default function Homepage() {
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
                             {first.map((item, i) => (
-                                <tr key={item.id}>
+                                <tr key={item.id} className="hover:bg-gray-200">
                                     <td className="px-6 py-4 whitespace-nowrap">{i + 1}</td>
                                     <td className="px-6 py-4 whitespace-nowrap">{item.email}</td>
                                     <td className="px-6 py-4 whitespace-nowrap">{item.name}</td>
                                     <td className="px-6 py-4 whitespace-nowrap">{item.password}</td>
                                     <td className="flex justify-start space-x-2 px-6 py-4 whitespace-nowrap">
-                                        <Trash2 role="button" onClick={() => handleDelete(item.id)} className="cursor-pointer hover:text-red-500" />
+                                        <Trash2 role="button" onClick={() => handleDelete(item.id)} className="cursor-pointer hover:text-pink-600" />
                                         <PenIcon role="button" onClick={() => updataApiData(item)} className="cursor-pointer hover:text-blue-500" />
                                     </td>
                                 </tr>
@@ -100,7 +120,7 @@ export default function Homepage() {
                     </table>
                 </div>
             )}
-            {modalOpen && <AddUser isOpen={modalOpen} toggle={toggleModal} initialValues={update}/>}
+            {modalOpen && <AddUser isOpen={modalOpen} toggle={toggleModal} initialValues={update} data={data} />}
         </div>
     )
 }
