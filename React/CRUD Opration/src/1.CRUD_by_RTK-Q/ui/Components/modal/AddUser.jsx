@@ -2,7 +2,7 @@ import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Swal from "sweetalert2";
-import { useAddDataMutation, useUpdateDataMutation } from "../../../Redux/fatures/fetchAPI";
+import { useAddDataMutation, useUpdateDataMutation } from "../../../Redux/features/ApiSlice";
 
 const validation = Yup.object({
     name: Yup.string()
@@ -25,6 +25,18 @@ export default function AddUser({ isOpen, toggle, data,
     const [addData] = useAddDataMutation();
     const [updateData] = useUpdateDataMutation();
 
+
+    // const addData = async (data) => {
+    //     const resp = await fetch("https://65f7bfe1b4f842e80885efc4.mockapi.io/users", {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json"
+    //         },
+    //         body: JSON.stringify(data)
+    //     });
+    //     console.log("fetch ", await resp.json());
+    // }
+
     const { values, errors, touched, handleBlur, handleChange, handleSubmit, resetForm } = useFormik({
         initialValues: initialValues || {
             email: "",
@@ -32,18 +44,12 @@ export default function AddUser({ isOpen, toggle, data,
             password: "",
         },
         validationSchema: validation,
-        onSubmit: async (values, { resetForm }) => {
+        onSubmit: (values, { resetForm }) => {
+            console.log("add value", values)
             try {
-                const existingUser = data.find(user => user.email === values.email);
-                if (existingUser) {
-                    Swal.fire({
-                        title: "User already exists!",
-                        text: "Please provide a different email address.",
-                        icon: "error",
-                    });
-                } else if (initialValues.email && initialValues.name && initialValues.password) {
+                if (initialValues.email && initialValues.name && initialValues.password) {
                     // If initialValues are provided, it means we are updating existing data
-                    await updateData(values);
+                    updateData(values);
                     Swal.fire({
                         title: "Updated!",
                         text: "User data has been updated successfully.",
@@ -51,7 +57,7 @@ export default function AddUser({ isOpen, toggle, data,
                     });
                 } else {
                     // If no initialValues, it means we are adding new data
-                    await addData(values);
+                    addData(values);
                     Swal.fire({
                         title: "Added!",
                         text: "New user has been added successfully.",
@@ -64,7 +70,7 @@ export default function AddUser({ isOpen, toggle, data,
                 console.error("Error adding data:", error);
             }
         },
-        
+
     });
 
     const cancelButton = () => {

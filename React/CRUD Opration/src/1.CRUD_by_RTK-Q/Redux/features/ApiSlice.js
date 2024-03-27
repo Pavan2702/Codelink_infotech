@@ -21,14 +21,12 @@ export const apiData = createApi({
       invalidatesTags: ["Posts"],
     }),
     addData: builder.mutation({
-      query: (newData) => {
-        console.log("🚀 ~ newData:", newData)
-        return{
+      query: (newData) => ({
         url: `users`,
         method: "POST",
         body: newData,
-        headers: { "Content-type": "application/json; charset=UTF-8" },
-      }},
+        headers: { "Content-type": "application/json" }
+      }),
       invalidatesTags: ["Posts"],
     }),
     updateData: builder.mutation({
@@ -36,7 +34,7 @@ export const apiData = createApi({
         url: `users/${newData.id}`,
         method: "PUT",
         body: newData,
-        headers: { "Content-type": "application/json; charset=UTF-8" },
+        headers: { "Content-type": "application/json" },
       }),
       invalidatesTags: ["Posts"],
     }),
