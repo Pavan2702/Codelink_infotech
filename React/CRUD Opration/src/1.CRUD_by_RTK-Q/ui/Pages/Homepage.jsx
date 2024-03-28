@@ -3,31 +3,43 @@ import { PenIcon, Trash2 } from "lucide-react";
 import Swal from "sweetalert2";
 import AddUser from "../Components/modal/AddUser";
 import { useDataOfApiQuery, useDeleteDataMutation } from "../../Redux/features/ApiSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteRdata, setData } from "../../Redux/features/mutation";
 
 export default function Homepage() {
     const { data, isError, isFetching, isLoading } = useDataOfApiQuery();
     const [deleteData] = useDeleteDataMutation();
     const [first, setFirst] = useState([]);
     const [update, setUpdate] = useState([]);
-    const [search, setSearch] = useState(" ")
+    const [search, setSearch] = useState("")
     const [modalOpen, setModalOpen] = useState(false);
+
+    const dispatch = useDispatch()
+    const userData = useSelector((state) => state.user.userData);
+    console.log("------------>>>>>>>", userData);
 
     useEffect(() => {
         if (!isLoading && data && search) {
             const searchdata = data.filter((e) =>
-                e?.email.toLowerCase().includes(search.toLowerCase()) ||
-                e?.name.toLowerCase().includes(search.toLowerCase())
+                e?.email.toLowerCase().includes(search.toLowerCase().trim()) ||
+                e?.name.toLowerCase().includes(search.toLowerCase().trim())
             );
             setFirst(searchdata);
         } else if (!isLoading && data) {
-            setFirst(data);
+            setFirst(data)
         }
     }, [isLoading, search, data]);
 
 
+    useEffect(() => {
+        if (first.length > 0) {
+            dispatch(setData(first));
+        }
+    }, [first, dispatch]);
+
     const toggleModal = () => {
         setModalOpen(!modalOpen);
-        setUpdate({}); // Reset update data when closing the modal
+        setUpdate({});
     };
 
     const handleDelete = async (id) => {
@@ -42,7 +54,10 @@ export default function Homepage() {
             });
 
             if (result.isConfirmed) {
-                await deleteData(id);
+                const Resp = deleteData(id);
+                if (Resp.isConfirmed) {
+                    dispatch(deleteRdata(id))
+                }
                 setFirst((prevData) => prevData.filter((item) => item.id !== id));
                 Swal.fire("Deleted!", "Your data has been deleted.", "success");
             } else if (result.dismiss === Swal.DismissReason.cancel) {
@@ -54,6 +69,7 @@ export default function Homepage() {
     };
 
     const updataApiData = (upData) => {
+        console.log("🚀 ~ updataApiData ~ upData:", upData)
         toggleModal();
         setUpdate(upData);
     };
@@ -100,11 +116,11 @@ export default function Homepage() {
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
                             {first.map((item, i) => (
-                                <tr key={item.id} className="hover:bg-gray-200">
+                                <tr key={i} className="hover:bg-gray-200">
                                     <td className="px-6 py-4 whitespace-nowrap">{i + 1}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap">{item.email}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap">{item.name}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap">{item.password}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap">{item?.email}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap">{item?.name}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap">{item?.password}</td>
                                     <td className="flex justify-start space-x-2 px-6 py-4 whitespace-nowrap">
                                         <Trash2 role="button" onClick={() => handleDelete(item.id)} className="cursor-pointer hover:text-pink-600" />
                                         <PenIcon role="button" onClick={() => updataApiData(item)} className="cursor-pointer hover:text-blue-500" />

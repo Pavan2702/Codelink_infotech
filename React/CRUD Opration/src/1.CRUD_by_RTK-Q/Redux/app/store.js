@@ -1,14 +1,18 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { apiData } from "../features/ApiSlice";
-import { userSlice } from "../features/mutation";
+import userReducer from "../features/mutation";
 
 export const store = configureStore({
-  reducer: {
+  reducer: combineReducers({
     [apiData.reducerPath]: apiData.reducer,
-  },
+    user: userReducer,
+  }),
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(apiData.middleware), // Import api.middleware
+    getDefaultMiddleware().concat(apiData.middleware),
 });
 
-setupListeners(store.dispatch)
+setupListeners(store.dispatch);
+
+// Check if userData is included in the store
+console.log("-------->",store.getState().userData);

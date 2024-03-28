@@ -3,6 +3,8 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import Swal from "sweetalert2";
 import { useAddDataMutation, useUpdateDataMutation } from "../../../Redux/features/ApiSlice";
+import { useDispatch } from "react-redux";
+import { updateRdata } from "../../../Redux/features/mutation";
 
 const validation = Yup.object({
     name: Yup.string()
@@ -22,6 +24,8 @@ export default function AddUser({ isOpen, toggle, data,
         password: "",
     },
 }) {
+    console.log("🚀 ~ initialValues:", initialValues)
+    const dispatch = useDispatch()
     const [addData] = useAddDataMutation();
     const [updateData] = useUpdateDataMutation();
 
@@ -49,7 +53,10 @@ export default function AddUser({ isOpen, toggle, data,
             try {
                 if (initialValues.email && initialValues.name && initialValues.password) {
                     // If initialValues are provided, it means we are updating existing data
-                    updateData(values);
+                    const resp = updateData(values);
+                    if (resp.isConformed) {
+                        dispatch(updateRdata(values))
+                    }
                     Swal.fire({
                         title: "Updated!",
                         text: "User data has been updated successfully.",
@@ -57,7 +64,10 @@ export default function AddUser({ isOpen, toggle, data,
                     });
                 } else {
                     // If no initialValues, it means we are adding new data
-                    addData(values);
+                    const resp = addData(values);
+                    if (resp.isConformed) {
+                        dispatch(updateRdata(values))
+                    }
                     Swal.fire({
                         title: "Added!",
                         text: "New user has been added successfully.",
@@ -206,7 +216,7 @@ export default function AddUser({ isOpen, toggle, data,
                                 type="submit"
                                 className="mr-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
                             >
-                                Submit Data
+                                {initialValues?.email?.length > 0 ? 'Update Data' : 'Submit Data'}
                             </button>
                             <button
                                 type="button"
