@@ -68,12 +68,12 @@ const formData = [
             { label: 'Voter Id', value: 'Voter Id' },
             { label: 'Driving Lic', value: 'Driving Lic' },
         ]
-    }, ,
+    },
     {
         name: 'password',
         type: 'text',
         placeholder: "Password",
-    }, ,
+    },
     {
         name: 'conformPass',
         type: 'text',
