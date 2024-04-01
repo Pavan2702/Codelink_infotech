@@ -6,6 +6,11 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { Girl } from '@mui/icons-material';
 import Data from './Data';
+import ArrowForwardSharpIcon from '@mui/icons-material/ArrowForwardSharp';
+import ToggleOnRoundedIcon from '@mui/icons-material/ToggleOnRounded';
+import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
+import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
+import PublicRoundedIcon from '@mui/icons-material/PublicRounded';
 
 const list = [
     {
@@ -23,7 +28,7 @@ export default function Chart1() {
     return (
         <>
             <Container>
-                <Grid display='flex' container spacing={10}>
+                <Grid display='flex' my={5} container spacing={10}>
                     <Grid item md={6}>
                         <Box>
                             <Typography variant='h5' fontWeight={1000} mb={2} sx={{ color: 'text.primary', letterSpacing: '2px' }}>
@@ -33,7 +38,7 @@ export default function Chart1() {
                                 Deliver great service experiences fast - without the complexity of traditional ITSM solutions. Accelerate critical development work, eliminate toil, and deploy changes with ease.
                             </Typography>
                             {list.map((lists, index) => (
-                                <Box mt={6} mb={3}>
+                                <Box mt={6} mb={3} key={index}>
                                     {lists.list1.map((item, subIndex) => (
                                         <Box
                                             key={subIndex}
@@ -65,37 +70,40 @@ export default function Chart1() {
                             </Typography>
                         </Box>
                     </Grid>
-                    <Grid item md={6}>
-                        <Grid display='flex'>
-                            <Grid item md={8}>
-                                <Box mx="auto" p={2} display='flex' borderRadius={8} bgcolor="background.paper">
-                                    <Card>
-                                        <Calendar
-                                            onChange={setDate}
-                                            value={date}
-                                            selectRange={false}
-                                            activeStartDate={new Date()}
-                                        />
-                                    </Card>
-                                    <Card>
-                                        <Calendar
-                                            onChange={setDate}
-                                            value={date}
-                                            selectRange={false}
-                                            activeStartDate={new Date()}
-                                        />
-                                    </Card>
-                                </Box>
-                            </Grid>
-                            <Grid item md={4}>
+                    <Grid item display={{ xs: 'none', md: 'block' }} md={6}>
+                        <Grid item xs={12}>
+                            <Box display="flex" alignItems="start">
                                 <Card>
-                                    <Data />
+                                    <Calendar
+                                        onChange={setDate}
+                                        value={date}
+                                        selectRange={false}
+                                        activeStartDate={new Date()}
+                                    />
                                 </Card>
-                            </Grid>
+                                <Card>
+                                    <Calendar
+                                        onChange={setDate}
+                                        value={date}
+                                        selectRange={false}
+                                        activeStartDate={new Date()}
+                                    />
+                                </Card>
+                            </Box>
                         </Grid>
+                        {/* <Grid item xs={12} md={4}>
+                                <Box container display="flex" alignItems="start">
+                                    <Data />
+                                </Box>
+                            </Grid> */}
                     </Grid>
                 </Grid>
             </Container >
         </>
     );
 }
+
+
+{/* <Box mx="auto" p={2} display='flex' borderRadius={8} bgcolor="background.paper">
+                                  
+                                </Box> */}

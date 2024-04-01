@@ -11,22 +11,22 @@ import Microsoft from '../../../../public/Microsoft.png'
 export default function Page1() {
     return (
         <Container maxWidth="lg" sx={{ py: 10, m: 'auto' }}>
-            <Grid container spacing={2} sx={{ mb: 5 }} >
+            <Grid container spacing={2} my={5} >
                 <Grid item xs={12} md={7} sx={{ mr: 'auto', placeSelf: 'center', pr: 5 }}>
                     <Box>
-                        <Typography component="h1" variant="h3" sx={{display:{xs:'none',md:'block'}}} gutterBottom fontWeight='1000'>
+                        <Typography component="h1" variant="h3" sx={{ display: { xs: 'none', md: 'block' } }} gutterBottom fontWeight='700'>
                             Building digital.
                         </Typography>
-                        <Typography component="h1" variant="h3" sx={{display:{xs:'none',md:'block'}}} gutterBottom fontWeight='1000'>
+                        <Typography component="h1" variant="h3" sx={{ display: { xs: 'none', md: 'block' } }} gutterBottom fontWeight='700'>
                             products & brands.
                         </Typography>
-                        <Typography component="h1" variant="h4" sx={{display:{xs:'block',md:'none'}}} gutterBottom fontWeight='1000'>
+                        <Typography component="h1" variant="h4" sx={{ display: { xs: 'block', md: 'none' } }} gutterBottom fontWeight='700'>
                             Building digital.
                         </Typography>
-                        <Typography component="h1" variant="h4" sx={{display:{xs:'block',md:'none'}}} gutterBottom fontWeight='1000'>
+                        <Typography component="h1" variant="h4" sx={{ display: { xs: 'block', md: 'none' } }} gutterBottom fontWeight='700'>
                             products & brands.
                         </Typography>
-                        <Typography variant="body1" paragraph>
+                        <Typography variant="body1" mb={3} paragraph>
                             This free and open-source landing page template was built using the utility classes from Tailwind CSS and based on the components from the Flowbite Library and the Blocks System.
                         </Typography>
                         <Stack direction="row" spacing={2}>
@@ -57,7 +57,7 @@ export default function Page1() {
                             component="img"
                             image={image}
                             alt={`Image ${index + 1}`}
-                            sx={{ height: 'auto', width: '70%', objectFit: 'contain',  "&:hover": { filter: 'brightness(0%)' }}}
+                            sx={{ height: 'auto', width: '70%', objectFit: 'contain', "&:hover": { filter: 'brightness(0%)' } }}
                         />
                     </Grid>
                 ))}

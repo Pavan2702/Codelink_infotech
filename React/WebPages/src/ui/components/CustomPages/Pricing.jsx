@@ -11,6 +11,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
+import { Stack } from '@mui/material';
 
 const fixedDesc = ['Individual configuration', 'No setup, or hidden fees'];
 
@@ -74,7 +75,7 @@ export default function Pricing() {
                     textAlign: { sm: 'center', md: 'center' }, // Align text to center
                 }}
             >
-                <Typography component="h2" variant="h4" color="text.primary" fontWeight='bold' mb={2}>
+                <Typography component="h3" variant="h5" color="text.primary" fontWeight={700} mb={2}>
                     Designed for business teams like yours
                 </Typography>
                 <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'center' }}>
@@ -100,7 +101,7 @@ export default function Pricing() {
                             }}
                         >
                             <CardContent>
-                                <Typography component="h3" variant="h5" sx={{ textAlign: 'center', mb: 2 }}>
+                                <Typography component="h3" variant="h5" fontWeight={700} sx={{ textAlign: 'center', mb: 2 }}>
                                     {tier.title}
                                 </Typography>
                                 <Typography variant="body2" sx={{ textAlign: 'center', mb: 2 }}>
@@ -113,12 +114,14 @@ export default function Pricing() {
                                         textAlign: 'center',
                                     }}
                                 >
-                                    <Typography component="h3" variant="h3" mr={1} sx={{ mb: 2 }}>
-                                        ${tier.price}
-                                    </Typography>
-                                    <Typography component="h3" variant="h6" sx={{ mb: 2 }}>
-                                        &nbsp;/month
-                                    </Typography>
+                                    <Box mx='auto' display='flex'>
+                                        <Typography component="h3" variant="h4" sx={{ mb: 2, textAlign: 'center' }}>
+                                            ${tier.price}
+                                        </Typography>
+                                        <Typography component="h3" variant="subtitle2" sx={{ mb: 2, textAlign: 'center' }}>
+                                            /month
+                                        </Typography>
+                                    </Box>
                                 </Box>
                                 <Divider my={2} />
                                 {
@@ -163,12 +166,18 @@ export default function Pricing() {
                                                 color: 'secondary.main',
                                             }}
                                         />
-                                  <Typography
-    variant="subtitle2"
-    color={line.dev ? "text.secondary" : "text.primary"}
->
-    {line.dev} : <Typography variant="subtitle2" color="text.primary">{line.size}</Typography>
-</Typography>
+                                        <Typography
+                                            variant="subtitle2"
+                                            display='flex'
+                                            component="span" // Render as span instead of p
+                                            color={line.dev ? "text.secondary" : "text.primary"}
+                                        >
+                                            {line.dev} :{' '}
+                                            <Typography variant="subtitle2" color="text.primary" component="span">
+                                                {line.size}
+                                            </Typography>{' '}
+                                        </Typography>
+
 
                                     </Box>
                                 ))}
@@ -178,7 +187,7 @@ export default function Pricing() {
                                     fullWidth
                                     variant={tier.buttonVariant}
                                     component="a"
-                                    sx={{ bgcolor: 'secondary.main', color: 'secondary.contrastText' }}
+                                    color='secondary'
                                 >
                                     {tier.buttonText}
                                 </Button>

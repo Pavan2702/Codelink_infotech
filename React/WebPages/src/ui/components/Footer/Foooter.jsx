@@ -77,7 +77,6 @@ export default function Foooter() {
 
     return (
         <Container>
-            <Divider sx={{ my: 2 }} />
             <Box
                 sx={{
                     display: 'flex',
