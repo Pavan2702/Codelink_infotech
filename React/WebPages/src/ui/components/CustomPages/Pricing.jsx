@@ -94,7 +94,7 @@ export default function Pricing() {
                     >
                         <Card
                             sx={{
-                                p: 2,
+                                p: 0,
                                 display: 'flex',
                                 flexDirection: 'column',
                                 gap: 4,
@@ -177,8 +177,6 @@ export default function Pricing() {
                                                 {line.size}
                                             </Typography>{' '}
                                         </Typography>
-
-
                                     </Box>
                                 ))}
                             </CardContent>

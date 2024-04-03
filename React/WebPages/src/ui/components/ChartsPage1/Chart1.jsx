@@ -72,7 +72,7 @@ export default function Chart1() {
                     </Grid>
                     <Grid item display={{ xs: 'none', md: 'block' }} md={6}>
                         <Grid item xs={12}>
-                            <Box display="flex" alignItems="start">
+                            <Box display="flex" gap={3} alignItems="start">
                                 <Card>
                                     <Calendar
                                         onChange={setDate}
@@ -102,8 +102,3 @@ export default function Chart1() {
         </>
     );
 }
-
-
-{/* <Box mx="auto" p={2} display='flex' borderRadius={8} bgcolor="background.paper">
-                                  
-                                </Box> */}

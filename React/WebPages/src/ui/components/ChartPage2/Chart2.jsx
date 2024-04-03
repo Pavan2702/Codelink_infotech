@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
-import { Box, Card, Grid, Stack, Typography } from '@mui/material';
+import React from 'react';
+import { Box, Card, Grid, Typography } from '@mui/material';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 import Container from '@mui/material/Container';
-import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import { Girl } from '@mui/icons-material';
 import Data from './Data';
 
 const list = [
@@ -21,7 +19,6 @@ const list = [
 ]
 
 export default function Chart2() {
-    const [date, setDate] = useState(new Date());
     return (
         <>
             <Container>
@@ -29,7 +26,9 @@ export default function Chart2() {
                     <Grid item display={{ xs: 'none', md: 'block' }} md={6}>
                         <Grid item xs={12}>
                             <Box display="flex" alignItems="start">
-                                <Data />
+                                <Card>
+                                    <Data />
+                                </Card>
                             </Box>
                         </Grid>
                         {/* <Grid item xs={12} md={4}>
