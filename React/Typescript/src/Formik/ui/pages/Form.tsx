@@ -12,7 +12,7 @@ const Form: React.FC = () => {
     const [users, setUsers] = useState<UserData[]>([])
     const [search, setSearch] = useState<string>('')
     const [update, setUpdate] = useState<UserData[]>([])
-    const [modalOpen, setModalOpen] = useState<boolean>(false);
+    const [modalOpen, setModalOpen] = useState(false);
 
     const dispatch = useDispatch()
 
@@ -34,12 +34,12 @@ const Form: React.FC = () => {
         }
     }, [users, dispatch]);
 
-    const userData = useSelector((state) => state?.user.userData);
+    const userData = useSelector((state) => state?.user?.userData);
     console.log("------------>>>>>>>", userData);
 
     const toggleModal = () => {
         setModalOpen(!modalOpen);
-        // setUpdate({});
+        setUpdate([]);
     };
 
     const handleDelete = async (id: string) => {
@@ -72,7 +72,7 @@ const Form: React.FC = () => {
     const updataApiData = (upData: UserData) => {
         console.log("🚀 ~ updataApiData ~ upData:", upData)
         toggleModal();
-        setUpdate(upData);
+        setUpdate([upData]);
     };
 
     return (
@@ -126,7 +126,7 @@ const Form: React.FC = () => {
                                                 <td className="px-6 py-4 whitespace-nowrap">{item?.name}</td>
                                                 <td className="px-6 py-4 whitespace-nowrap">{item?.password}</td>
                                                 <td className="flex justify-start space-x-2 px-6 py-4 whitespace-nowrap">
-                                                    <Trash2 role="button" onClick={() => handleDelete(item.id)} className="cursor-pointer hover:text-pink-600" />
+                                                    <Trash2 role="button" onClick={() =>item.id && handleDelete(item.id)} className="cursor-pointer hover:text-pink-600" />
                                                     <PenIcon role="button" onClick={() => updataApiData(item)} className="cursor-pointer hover:text-blue-500" />
                                                 </td>
                                             </tr>
@@ -136,7 +136,7 @@ const Form: React.FC = () => {
                             </form>
                         </div>
                     )}
-                {modalOpen && <AddUser isOpen={modalOpen} toggle={toggleModal} initialvalue={update} />}
+                {modalOpen && <AddUser isOpen={modalOpen} toggle={toggleModal} initialvalue={update[0]} />}
             </div>
         </>
     )

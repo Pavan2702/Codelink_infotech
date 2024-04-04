@@ -18,11 +18,12 @@ export const userSlice = createSlice({
     addRdata: (state, action: PayloadAction<UserData>) => {
       state.userData.push(action.payload);
     },
-    updateRdata: (state, action: PayloadAction<{ id: string; newData: Partial<UserData> }>) => {
-      const { id, newData } = action.payload;
+    updateRdata: (state, action: PayloadAction<UserData>) => {
+      const newData = action.payload;
+      const { id, ...rest } = newData; // Destructure id from newData
       const index = state.userData.findIndex((user) => user.id === id);
       if (index !== -1) {
-        state.userData[index] = { ...state.userData[index], ...newData };
+        state.userData[index] = { ...state.userData[index], ...rest }; // Spread the rest of the newData into the existing user object
       }
     },
     deleteRdata: (state, action: PayloadAction<string>) => {

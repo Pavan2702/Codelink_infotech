@@ -1,6 +1,6 @@
 import React from 'react';
 import * as Yup from "yup";
-import { Field, Form, Formik } from 'formik';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { LucideShieldClose } from 'lucide-react';
 import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
@@ -66,80 +66,80 @@ const AddUser: React.FC<AddUserProps> = ({ isOpen, toggle, initialvalue = { emai
                 password: "",
             }}
             validationSchema={validation}
-            // onSubmit={async (values, { resetForm }) => {
-            //     try {
-            //         if (initialvalue.email && initialvalue.name && initialvalue.password) {
-            //             const resp = await updateData(values); // Call the mutation with the values
-            //             if (resp) {
-            //                 dispatch(updateRdata(values));
-            //                 Swal.fire({
-            //                     title: "Updated!",
-            //                     text: "Data has been updated successfully.",
-            //                     icon: "success",
-            //                 });
-            //                 resetForm();
-            //                 toggle();
-            //             }
-            //         } else {
-            //             const resp = await addData(values); // Call the mutation with the values
-            //             console.log("🚀 ~ onSubmit={ ~ resp:", resp)
-            //             if (resp.isConfirmed) {
-            //                 dispatch(addRdata(values));
-            //                 Swal.fire({
-            //                     title: "Added!",
-            //                     text: "New user has been added successfully.",
-            //                     icon: "success",
-            //                 });
-            //                 resetForm();
-            //                 toggle();
-            //             }
-            //         }
-            //     } catch (error) {
-            //         console.error("Error adding data:", error);
-            //     }
-            // }}
-            onSubmit={async (values, { resetForm }) => {
+            onSubmit={async (values: UserData, { resetForm }: { resetForm: () => void }) => {
                 try {
-                    if (!validation.isValidSync(values)) {
-                        // If the form is not valid, return early
-                        return;
-                    }
-
-                    let resp;
                     if (initialvalue.email && initialvalue.name && initialvalue.password) {
-                        resp = await updateData(values); // Call the mutation with the values for updating
-                        Swal.fire({
-                            title: "Updated!",
-                            text: "Data has been updated successfully.",
-                            icon: "success",
-                        });
-                        
-                        toggle()
-                    } else {
-                        resp = await addData(values); // Call the mutation with the values for adding new data
-                        Swal.fire({
-                            title: "Added!",
-                            text: "New user has been added successfully.",
-                            icon: "success",
-                        });
-                        toggle()
-                    }
-                    
-                    if (resp.isConfirmed) {
-                        if (initialvalue.email && initialvalue.name && initialvalue.password) {
-                            dispatch(updateRdata(values));
-
-                        } else {
-                            dispatch(addRdata(values));
-
+                        const resp = await updateData(values); // Call the mutation with the values
+                        if ('data' in resp) {
+                            dispatch(updateRdata({ id: initialvalue.id, ...values }));
+                            Swal.fire({
+                                title: "Updated!",
+                                text: "Data has been updated successfully.",
+                                icon: "success",
+                            });
+                            // resetForm();
+                            // toggle();
                         }
-                        resetForm();
-                        toggle();
+                    } else {
+                        const respn = await addData(values); // Call the mutation with the values
+                        console.log("🚀 ~ onSubmit={ ~ resp:", respn)
+                        if ('data' in respn) {
+                            dispatch(addRdata(values));
+                            Swal.fire({
+                                title: "Added!",
+                                text: "New user has been added successfully.",
+                                icon: "success",
+                            });
+                        }
                     }
+                    resetForm();
+                    toggle();
                 } catch (error) {
-                    console.error("Error adding or updating data:", error);
+                    console.error("Error adding data:", error);
                 }
             }}
+        // onSubmit={async (values, { resetForm }) => {
+        //     try {
+        //         // if (!validation.isValidSync(values)) {
+        //         //     // If the form is not valid, return early
+        //         //     return;
+        //         // }
+
+        //         let resp;
+        //         if (initialvalue.email && initialvalue.name && initialvalue.password) {
+        //             resp = await updateData(values); // Call the mutation with the values for updating
+        //             Swal.fire({
+        //                 title: "Updated!",
+        //                 text: "Data has been updated successfully.",
+        //                 icon: "success",
+        //             });
+
+        //             toggle()
+        //         } else {
+        //             resp = await addData(values); // Call the mutation with the values for adding new data
+        //             Swal.fire({
+        //                 title: "Added!",
+        //                 text: "New user has been added successfully.",
+        //                 icon: "success",
+        //             });
+        //             toggle()
+        //         }
+
+        //         if (resp.isConfirmed) {
+        //             if (initialvalue.email && initialvalue.name && initialvalue.password) {
+        //                 dispatch(updateRdata(values));
+
+        //             } else {
+        //                 dispatch(addRdata(values));
+
+        //             }
+        //             resetForm();
+        //             toggle();
+        //         }
+        //     } catch (error) {
+        //         console.error("Error adding or updating data:", error);
+        //     }
+        // }}
 
         >
             {({ errors, touched, values }) => (
@@ -170,7 +170,9 @@ const AddUser: React.FC<AddUserProps> = ({ isOpen, toggle, initialvalue = { emai
                                             {item.placeholder}
                                         </label>
                                         {touched[item.name as keyof InitialValues] && errors[item.name as keyof InitialValues] && (
-                                            <div className="text-red-500 text-sm mt-1">{errors[item.name as keyof InitialValues]}</div>
+                                            <div className="text-red-500 text-sm mt-1">
+                                                <ErrorMessage name={item.name} component="div" className="text-red-500" />
+                                            </div>
                                         )}
 
                                     </div>
