@@ -1,38 +1,34 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+interface UserState {
+  userData: UserData[];
+}
+
+const initialState: UserState = {
+  userData: [],
+};
 
 export const userSlice = createSlice({
   name: "userData",
-  initialState: {
-    userData: [],
-    pending: false,
-    errorMsg: "",
-  },
+  initialState,
   reducers: {
-    setData: (state, action) => {
+    setData: (state, action: PayloadAction<UserData[]>) => {
       state.userData = action.payload;
     },
-    addRdata: (state, action) => {
-      console.log("🚀 ~ action:", action)
-      console.log("🚀 ~ state:", state)
+    addRdata: (state, action: PayloadAction<UserData>) => {
       state.userData.push(action.payload);
     },
-    updateRdata: (state, action) => {
+    updateRdata: (state, action: PayloadAction<{ id: string; newData: Partial<UserData> }>) => {
       const { id, newData } = action.payload;
       const index = state.userData.findIndex((user) => user.id === id);
       if (index !== -1) {
         state.userData[index] = { ...state.userData[index], ...newData };
       }
     },
-    deleteRdata: (state, action) => {
+    deleteRdata: (state, action: PayloadAction<string>) => {
       const id = action.payload;
       state.userData = state.userData.filter((user) => user.id !== id);
     },
-    // setPending: (state, action) => {
-    //   state.pending = action.payload;
-    // },
-    // setErrorMsg: (state, action) => {
-    //   state.errorMsg = action.payload;
-    // },
   },
 });
 
@@ -41,8 +37,6 @@ export const {
   addRdata,
   updateRdata,
   deleteRdata,
-  // setPending,
-  // setErrorMsg,
 } = userSlice.actions;
 
-export default userSlice.reducer; // Exporting the reducer as default
+export default userSlice.reducer;

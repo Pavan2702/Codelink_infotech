@@ -11,9 +11,8 @@ const Form: React.FC = () => {
     const [deleteData] = useDeleteDataMutation()
     const [users, setUsers] = useState<UserData[]>([])
     const [search, setSearch] = useState<string>('')
-    const [update, setUpdate] = useState<UserData | []>([])
+    const [update, setUpdate] = useState<UserData[]>([])
     const [modalOpen, setModalOpen] = useState<boolean>(false);
-
 
     const dispatch = useDispatch()
 
@@ -35,7 +34,7 @@ const Form: React.FC = () => {
         }
     }, [users, dispatch]);
 
-    const userData = useSelector((state) => state?.user?.userData);
+    const userData = useSelector((state) => state?.user.userData);
     console.log("------------>>>>>>>", userData);
 
     const toggleModal = () => {
@@ -43,7 +42,7 @@ const Form: React.FC = () => {
         // setUpdate({});
     };
 
-    const handleDelete = async (id) => {
+    const handleDelete = async (id: string) => {
         try {
             const result = await Swal.fire({
                 title: "Are you sure?",
@@ -75,7 +74,6 @@ const Form: React.FC = () => {
         toggleModal();
         setUpdate(upData);
     };
-
 
     return (
         <>
@@ -138,12 +136,10 @@ const Form: React.FC = () => {
                             </form>
                         </div>
                     )}
-                {/* {modalOpen && <AddUser isOpen={modalOpen} toggle={toggleModal} initialValues={update} />} */}
+                {modalOpen && <AddUser isOpen={modalOpen} toggle={toggleModal} initialvalue={update} />}
             </div>
         </>
     )
 }
 
 export default Form
-
-// onClick={() => handleDelete(item.id)}
