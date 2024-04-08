@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import ReactPaginate from 'react-paginate';
 import { useDataOfApiQuery, useDeleteDataMutation } from '../../Redux/fetures/Apislice'
 import { PenIcon, Trash2 } from 'lucide-react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -13,6 +14,8 @@ const Form: React.FC = () => {
     const [search, setSearch] = useState<string>('')
     const [update, setUpdate] = useState<UserData[]>([])
     const [modalOpen, setModalOpen] = useState(false);
+    const [currentPage, setCurrentPage] = useState(0); // State to manage current page
+    const itemsPerPage = 5; // Number of items per page
 
     const dispatch = useDispatch()
 
@@ -55,7 +58,6 @@ const Form: React.FC = () => {
 
             if (result.isConfirmed) {
                 const Resp = deleteData(id);
-                console.log("🚀 ~ handleDelete ~ Resp:", Resp)
                 if (Resp.requestId === id) {
                     dispatch(deleteRdata(id))
                 }
@@ -70,10 +72,19 @@ const Form: React.FC = () => {
     };
 
     const updataApiData = (upData: UserData) => {
-        console.log("🚀 ~ updataApiData ~ upData:", upData)
         toggleModal();
         setUpdate([upData]);
     };
+
+    // Pagination Logic
+    const pageCount = Math.ceil(users.length / itemsPerPage); // Calculate total pages
+    const offset = currentPage * itemsPerPage; // Calculate offset
+
+    // Handle page change
+    const handlePageClick = ({ selected }: { selected: number }) => {
+        setCurrentPage(selected); // Update current page
+    };
+
 
     return (
         <>
@@ -119,20 +130,31 @@ const Form: React.FC = () => {
                                         </tr>
                                     </thead>
                                     <tbody className="bg-white divide-y divide-gray-200">
-                                        {users?.map((item, i) => (
+                                        {users.slice(offset, offset + itemsPerPage).map((item, i) => (
                                             <tr key={i} className="hover:bg-gray-200">
-                                                <td className="px-6 py-4 whitespace-nowrap">{i + 1}</td>
-                                                <td className="px-6 py-4 whitespace-nowrap">{item?.email}</td>
-                                                <td className="px-6 py-4 whitespace-nowrap">{item?.name}</td>
-                                                <td className="px-6 py-4 whitespace-nowrap">{item?.password}</td>
+                                                <td className="px-6 py-4 whitespace-nowrap">{offset + i + 1}</td>
+                                                <td className="px-6 py-4 whitespace-nowrap">{item.email}</td>
+                                                <td className="px-6 py-4 whitespace-nowrap">{item.name}</td>
+                                                <td className="px-6 py-4 whitespace-nowrap">{item.password}</td>
                                                 <td className="flex justify-start space-x-2 px-6 py-4 whitespace-nowrap">
-                                                    <Trash2 role="button" onClick={() =>item.id && handleDelete(item.id)} className="cursor-pointer hover:text-pink-600" />
+                                                    <Trash2 role="button" onClick={() => item.id && handleDelete(item.id)} className="cursor-pointer hover:text-pink-600" />
                                                     <PenIcon role="button" onClick={() => updataApiData(item)} className="cursor-pointer hover:text-blue-500" />
                                                 </td>
                                             </tr>
                                         ))}
                                     </tbody>
                                 </table>
+                                <ReactPaginate
+                                    className='flex gap-3 justify-center py-4 text-slate-500'
+                                    breakLabel="..."
+                                    nextLabel="next >"
+                                    onPageChange={handlePageClick}
+                                    pageRangeDisplayed={5}
+                                    pageCount={pageCount}
+                                    previousLabel="< previous"
+                                    renderOnZeroPageCount={null}
+                                    activeClassName="active-page"
+                                />
                             </form>
                         </div>
                     )}
@@ -142,4 +164,4 @@ const Form: React.FC = () => {
     )
 }
 
-export default Form
+export default Form;

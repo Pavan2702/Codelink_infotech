@@ -98,49 +98,6 @@ const AddUser: React.FC<AddUserProps> = ({ isOpen, toggle, initialvalue = { emai
                     console.error("Error adding data:", error);
                 }
             }}
-        // onSubmit={async (values, { resetForm }) => {
-        //     try {
-        //         // if (!validation.isValidSync(values)) {
-        //         //     // If the form is not valid, return early
-        //         //     return;
-        //         // }
-
-        //         let resp;
-        //         if (initialvalue.email && initialvalue.name && initialvalue.password) {
-        //             resp = await updateData(values); // Call the mutation with the values for updating
-        //             Swal.fire({
-        //                 title: "Updated!",
-        //                 text: "Data has been updated successfully.",
-        //                 icon: "success",
-        //             });
-
-        //             toggle()
-        //         } else {
-        //             resp = await addData(values); // Call the mutation with the values for adding new data
-        //             Swal.fire({
-        //                 title: "Added!",
-        //                 text: "New user has been added successfully.",
-        //                 icon: "success",
-        //             });
-        //             toggle()
-        //         }
-
-        //         if (resp.isConfirmed) {
-        //             if (initialvalue.email && initialvalue.name && initialvalue.password) {
-        //                 dispatch(updateRdata(values));
-
-        //             } else {
-        //                 dispatch(addRdata(values));
-
-        //             }
-        //             resetForm();
-        //             toggle();
-        //         }
-        //     } catch (error) {
-        //         console.error("Error adding or updating data:", error);
-        //     }
-        // }}
-
         >
             {({ errors, touched, values }) => (
                 <Form>

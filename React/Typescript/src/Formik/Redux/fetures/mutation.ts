@@ -20,10 +20,10 @@ export const userSlice = createSlice({
     },
     updateRdata: (state, action: PayloadAction<UserData>) => {
       const newData = action.payload;
-      const { id, ...rest } = newData; // Destructure id from newData
+      const { id, ...rest } = newData;
       const index = state.userData.findIndex((user) => user.id === id);
       if (index !== -1) {
-        state.userData[index] = { ...state.userData[index], ...rest }; // Spread the rest of the newData into the existing user object
+        state.userData[index] = { ...state.userData[index], ...rest };
       }
     },
     deleteRdata: (state, action: PayloadAction<string>) => {
