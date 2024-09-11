@@ -1,0 +1,19 @@
+<h1 class="text-3xl font-bold text-center mb-4">Tic Tac Toe</h1>
+
+<div class="grid grid-cols-3 gap-2 w-64 mx-auto">
+  <div
+    class="cell flex items-center justify-center bg-gray-200 border border-gray-400 text-4xl font-bold cursor-pointer h-20 w-20"
+    *ngFor="let cell of board; let i = index"
+    [class.text-blue-500]="cell === 'X'"
+    [class.text-red-500]="cell === 'O'"
+    (click)="makeMove(i)"
+  >
+    {{ cell }}
+  </div>
+</div>
+
+<div *ngIf="winner || draw" class="text-center mt-4">
+  <h2 class="text-2xl font-semibold" *ngIf="winner">{{ winner }} wins!</h2>
+  <h2 class="text-2xl font-semibold" *ngIf="draw">Draw!</h2>
+  <button class="mt-2 px-4 py-2 bg-blue-500 text-white rounded" (click)="resetGame()">Play Again</button>
+</div>
