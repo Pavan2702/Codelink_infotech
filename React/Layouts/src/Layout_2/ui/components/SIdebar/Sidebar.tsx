@@ -18,7 +18,7 @@ const callsToAction = [
 const Sidebar: React.FC = () => {
     return (
         <div className="bg-white shadow-sm">
-            <div className="left-full rounded-3xl bg-white">
+            <div className="rounded-3xl bg-white">
                 <div className="p-4">
                     {products.map((item) => (
                         <div

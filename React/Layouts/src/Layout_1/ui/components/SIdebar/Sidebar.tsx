@@ -18,9 +18,9 @@ const callsToAction = [
 
 const Sidebar: React.FC = () => {
     return (
-        <div className="bg-white mt-20 shadow-sm">
+        <div className="bg-white mt-24 shadow-sm">
             <div className="left-full rounded-3xl bg-white">
-                <div className="p-4 max-h-[500px] overflow-y-scroll">
+                <div className="p-4 max-h-[550px] overflow-y-scroll custom-scrollbar">
                     {products.map((item) => (
                         <div
                             key={item.name}

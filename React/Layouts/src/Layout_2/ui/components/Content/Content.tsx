@@ -10,6 +10,27 @@ const Content: React.FC = () => {
                     <div className="mt-12 md:mt-14 w-full flex justify-center">
                         <button className="w-full sm:w-auto border border-gray-800 text-base font-medium text-gray-800 py-5 px-14 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 hover:bg-gray-800 hover:text-white dark:hover:text-white dark:hover:bg-gray-700">Back to store</button>
                     </div>
+                    <div className='h-[500px]'>
+                        hell
+                    </div>
+                    <div className='h-[500px]'>
+                        hell
+                    </div>
+                    <div className='h-[500px]'>
+                        hell
+                    </div>
+                    <div className='h-[500px]'>
+                        hell
+                    </div>
+                    <div className='h-[500px]'>
+                        hell
+                    </div>
+                    <div className='h-[500px]'>
+                        hell
+                    </div>
+                    <div className='h-[500px]'>
+                        hell
+                    </div>
                 </div>
             </div>
         </>
